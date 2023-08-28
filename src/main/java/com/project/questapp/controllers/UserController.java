@@ -1,7 +1,6 @@
 package com.project.questapp.controllers;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.questapp.entities.User;
-import com.project.questapp.repos.UserRepository;
 import com.project.questapp.services.UserService;
 
 @RestController
