@@ -11,6 +11,7 @@ import com.project.questapp.entities.User;
 import com.project.questapp.repos.PostRepository;
 import com.project.questapp.requests.PostCreateRequest;
 import com.project.questapp.requests.PostUpdateRequest;
+import com.project.questapp.responses.LikeResponse;
 import com.project.questapp.responses.PostResponse;
 
 @Service
@@ -20,10 +21,13 @@ public class PostService {
         private UserService userService;
         private LikeService likeService;
 
-        public PostService(PostRepository postRepository, UserService userService, LikeService likeService) {
-            this.likeService = likeService;
+        public PostService(PostRepository postRepository, UserService userService) {
             this.postRepository = postRepository;
             this.userService = userService;
+        }
+
+        public void setLikeService(LikeService likeService) {
+            this.likeService = likeService;
         }
 
         public List<PostResponse> getAllPosts(Optional<Long> userId) {
@@ -33,7 +37,9 @@ public class PostService {
             }else{
                 postList = postRepository.findAll();
             }
-            return postList.stream().map(p -> new PostResponse(p)).collect(Collectors.toList());
+            return postList.stream().map(p -> {
+                List<LikeResponse> likes = likeService.getAllLikesWithParam(null, Optional.of(p.getId()));
+                return new PostResponse(p, likes);}).collect(Collectors.toList());
             
         }
 
