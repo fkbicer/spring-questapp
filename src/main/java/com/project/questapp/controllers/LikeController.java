@@ -37,12 +37,12 @@ public class LikeController {
     
     @PostMapping
     public Like createOneLike(@RequestBody LikeCreateRequest likeCreateRequest) {
-        return likeService.createLikeById(likeCreateRequest);
+        return likeService.createOneLike(likeCreateRequest);
     }
 
      @DeleteMapping("/{likeId}")
     public void deleteOneComment(@PathVariable Long likeId) {
-        likeService.deleteLikeById(likeId);
+        likeService.deleteOneLikeById(likeId);
     }
 
     
