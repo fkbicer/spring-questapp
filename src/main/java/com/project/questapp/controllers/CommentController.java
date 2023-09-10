@@ -19,7 +19,7 @@ import com.project.questapp.requests.CommentUpdateRequest;
 import com.project.questapp.services.CommentService;
 
 @RestController
-@RequestMapping("/controller")
+@RequestMapping("/comments")
 public class CommentController {
 
     private CommentService commentService;
