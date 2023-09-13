@@ -3,6 +3,7 @@ package com.project.questapp.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -73,6 +74,10 @@ public class SecurityConfig {
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests((request) -> request
                     .requestMatchers("/auth/**")
+                    .permitAll()
+                    .requestMatchers(HttpMethod.GET,"/posts")
+                    .permitAll()
+                    .requestMatchers(HttpMethod.GET,"/comments")
                     .permitAll()
                     .anyRequest().authenticated()
             ).sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
