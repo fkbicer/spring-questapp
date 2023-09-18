@@ -77,8 +77,6 @@ public class SecurityConfig {
                     .permitAll()
                     .requestMatchers(HttpMethod.GET,"/posts")
                     .permitAll()
-                    .requestMatchers("/users/**")
-                    .permitAll()
                     .requestMatchers(HttpMethod.GET,"/comments")
                     .permitAll()
                     .anyRequest().authenticated()
